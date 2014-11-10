@@ -19,4 +19,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('anime_content.urls')),
     #lalalallaal
+    #lololo
+    #llllll
 )
