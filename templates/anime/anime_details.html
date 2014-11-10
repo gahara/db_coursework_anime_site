@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+<div class="anime_details">
+    {% block body_block %}
+        <div>
+        <str>Title: </str>  <strong>{{ anime_detail.title }}</strong> 
+        </div>
+        <div>
+        <str>Original title: </str> <strong> {{ anime_detail.originalTitle }} </strong> 
+        </div>
+        <div>
+        <str>Genre: </str>  <strong> {{ anime_detail.genre }} </strong> 
+        </div>
+        <div>
+        <str>Year: </str>  <strong> {{ anime_detail.year }} </strong> 
+        </div>
+        <div>
+        <str>Series: </str>  <strong>{{ anime_detail.seriesNumber }} </strong> 
+        </div>
+        <div>
+        <str>Director: </str>  <strong>{{ anime_detail.directorFK.firstName}} {{ anime_detail.directorFK.lastName}} </strong> 
+        </div>
+        <div>
+        <str>Studio: </str>  <strong>{{ anime_detail.studioFK.name }} </strong> 
+        </div>
+        <div>
+        <str>Rating: </str>  <strong>{{ anime_detail.rating }}</strong> 
+        </div>
+        <div>
+        <str>Synopsis: </str>  <strong>{{ anime_detail.description }}</strong> 
+        </div>
+        
+        
+        
+    <div class="hero-unit">
+    <str>Rate</str>
+    <br />
+
+    <div class="container">
+       
+        <form class="span6" id="rating_form" method="post" action = "{% url 'anime.rating' anime_detail.id %}"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Display each form here -->
+
+            
+            {% for field in rating_form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}<br />
+            {{ field }}<br />
+            {% endfor %}            
+
+            
+            <!-- Provide a button to click to submit the form. -->
+            <input class="btn btn-primary" type="submit" name="submit" value="Done"/>
+        </form>
+        
+    </div>
+    
+    
+    <div class="container">
+       
+        <form  id="comment_form" method="post" action = "{% url 'anime.comment' anime_detail.id %}"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Display each form here -->
+            
+            
+            {% for field in comment_form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}<br />
+            {{ field }}<br />
+            {% endfor %} 
+            
+            <!-- Provide a button to click to submit the form. -->
+            <input class="btn btn-primary" type="submit" name="submit" value="Submit"/>
+        </form>
+        
+    </div>           
+
+</div>
+<h2> Comments </h2>
+{% for comment in show_comments %}
+    
+       <str> <strong> <a href="{{ comment.userFK.get_absolute_url }}">{{ comment.userFK.username }} </a>: </strong> {{ comment.text }}<str> <br />
+        
+    {% endfor %}
+        
+        
+    {% endblock %}
+    
+    
+</div>

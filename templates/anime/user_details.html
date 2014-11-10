@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+<div class="user_details">
+    {% block body_block %}
+        <div>
+        <strong> Username: </strong>
+        {{ user_detail.user.username }}
+        </div>
+        <div>
+        <strong> Firstname: </strong>
+        {{ user_detail.user.first_name }}
+        </div>
+        <div>
+        <strong> Lastname: </strong>
+        {{ user_detail.user.last_name }}
+        </div>
+        <div>
+        <strong> age: </strong>
+        {{ user_detail.age }}
+        </div>
+        <div>
+        <strong> Country: </strong>
+        {{ user_detail.country }}
+        </div>
+        <strong> Email: </strong>
+        {{ user_detail.user.email }}
+        </div>
+       
+    {% endblock %}
+</div>

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+<ul>
+    {% for anime in anime_list %}
+    <li>
+       <a href="{{ anime.get_absolute_url }}">
+           <h2>{{ anime.title }}</h2>
+       </a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
